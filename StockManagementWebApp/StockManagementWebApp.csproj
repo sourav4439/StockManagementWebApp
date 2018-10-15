@@ -185,8 +185,13 @@
     <Compile Include="Migrations\201810131924362_Initialmodel.Designer.cs">
       <DependentUpon>201810131924362_Initialmodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810151340006_CompanyModel.cs" />
+    <Compile Include="Migrations\201810151340006_CompanyModel.Designer.cs">
+      <DependentUpon>201810151340006_CompanyModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -305,6 +310,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810131924362_Initialmodel.resx">
       <DependentUpon>201810131924362_Initialmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810151340006_CompanyModel.resx">
+      <DependentUpon>201810151340006_CompanyModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
