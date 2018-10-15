@@ -189,8 +189,17 @@
     <Compile Include="Migrations\201810151340006_CompanyModel.Designer.cs">
       <DependentUpon>201810151340006_CompanyModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810151425550_companyReg.cs" />
+    <Compile Include="Migrations\201810151425550_companyReg.Designer.cs">
+      <DependentUpon>201810151425550_companyReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810151430087_CategoryModel.cs" />
+    <Compile Include="Migrations\201810151430087_CategoryModel.Designer.cs">
+      <DependentUpon>201810151430087_CategoryModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -313,6 +322,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810151340006_CompanyModel.resx">
       <DependentUpon>201810151340006_CompanyModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810151425550_companyReg.resx">
+      <DependentUpon>201810151425550_companyReg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810151430087_CategoryModel.resx">
+      <DependentUpon>201810151430087_CategoryModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
