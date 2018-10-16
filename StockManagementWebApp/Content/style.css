@@ -1,0 +1,240 @@
+*{margin: 0;padding:0}
+body{font-family:arial !important;	
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+ }
+ a{text-decoration:none}
+ h1,h2,h3,h4,h5,h6{
+	 font-weight: normal;
+	margin-top: 10px;
+	margin-bottom: 10px;
+ }
+ p{
+	 line-height:150%;
+	 
+ }
+ .full_body{
+     width:100%;
+     background:#615c5c;
+ }
+ 
+ .container{
+	 width:960px;
+	 margin:0 auto;
+	  position: relative;
+    -moz-box-shadow: 4px 0px 4px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 4px 0px 4px rgba(0, 0, 0, .5);
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, .5);
+    padding: 1px;
+ }
+#menu{
+	padding:0;
+	list-style-type:none;
+	width:960px;
+	background:#4E4E4E;
+	border-bottom:5px solid orange;
+	min-height:49px;
+	margin:0 auto;
+	
+}
+#menu li{
+	float:left;
+	border-right:1px solid #605B5B;
+	border-left:1px solid #2B2A2A;
+	position:relative;
+	z-index:9999;
+}
+
+#menu li:last-child{
+	border-right:none;
+}
+#menu li:first-child{
+	border-left:none;
+}
+#menu li a{
+	color:#fff;
+	text-decoration:none;
+	background:#4E4E4E;
+	padding:10px 20px;
+	display:block;
+	transition:0.3s all ease;
+}
+#menu li a:hover{
+	background:orange;
+}
+
+
+#menu li ul{
+	list-style-type:none;
+	padding:0;
+	position:absolute;
+	left:-99999px;
+	/*transition:0.5s all ease;*/
+}
+#menu li:hover ul{
+	left:0;
+
+}
+
+#menu li ul li{
+	float:none;
+	border-right:none;
+	border-left:none;
+	border-top:1px solid #605B5B;
+	border-bottom:1px solid #2B2A2A;	
+	width:200px;
+}
+
+.maincontent{
+background: #F0F0F0;
+overflow: hidden;
+}
+
+
+footer{
+	background:#4E4E4E;
+	color: #dddddd;
+}
+footer h2{
+	font-weight:bold;
+	font-size:14px;
+	text-align:center;
+}
+footer p{text-align:center;}
+#social_area{
+	text-align:center;
+	overflow:hidden;
+	
+	width:315px;
+}
+#social_area p{
+	font-size:10px;
+}
+#social_area ul{
+	list-style:none;
+	
+}
+#social_area ul li{
+	margin:0 10px;
+	display:inline-block
+}
+#social_area ul li.facebook a{
+	display:block;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	background:url(img/fb1.png) no-repeat;
+}
+#social_area ul li.facebook a:hover{
+	background:url(img/fb.png) no-repeat;
+	transition:0.3s all ease;	
+	border-radius:20px;
+	position: relative;
+    -moz-box-shadow: 0px 1px 12px 6px #2a457e;
+    -webkit-box-shadow: 0px 1px 12px 6px #2a457e;
+    box-shadow: 0px 1px 12px 6px #2a457e;
+	
+}
+#social_area ul li.twitter a{
+	display:block;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	background:url(img/tw.png) no-repeat;
+}
+#social_area ul li.twitter a:hover{
+	background:url(img/tw1.png) no-repeat;
+	transition:0.3s all ease;	
+	border-radius:20px;
+	position: relative;
+    -moz-box-shadow: 0px 1px 12px 6px #2a457e;
+    -webkit-box-shadow: 0px 1px 12px 6px #2a457e;
+    box-shadow: 0px 1px 12px 6px #259AE5e;
+	
+}
+#social_area ul li.google a{
+	display:block;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	background:url(img/google.png) no-repeat;
+}
+#social_area ul li.google a:hover{
+	background:url(img/google1.png) no-repeat;
+	transition:0.3s all ease;	
+	border-radius:20px;
+	position: relative;
+    -moz-box-shadow: 0px 1px 12px 6px #2a457e;
+    -webkit-box-shadow: 0px 1px 12px 6px #2a457e;
+    box-shadow: 0px 1px 12px 6px #ee4134d1;
+	
+}
+#social_area ul li.youtube a{
+	display:block;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	background:url(img/youtube.png) no-repeat;
+}
+#social_area ul li.youtube a:hover{
+	background:url(img/youtube1.png) no-repeat;
+	transition:0.3s all ease;	
+	border-radius:20px;
+	position: relative;
+    -moz-box-shadow: 0px 1px 12px 6px #2a457e;
+    -webkit-box-shadow: 0px 1px 12px 6px #2a457e;
+    box-shadow: 0px 1px 12px 6px #e02f2fe3;
+	
+}
+
+
+
+
+#usefull_link{
+	float:left;
+	
+	width:320px;
+	
+}
+#usefull_link h2{text-align:center;}
+#usefull_link a{
+	color:#dddddd;
+}
+#usefull_link a:hover{
+		color:rgb(243, 187, 114);
+}
+#any_query{
+	 float: right;
+	 overflow: hidden;
+	 width:320px;
+     margin-top: -100px;
+}
+#any_query h2{
+	font-weight:bold;
+	text-align:center;
+}
+#any_query p{
+	font-size:12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
