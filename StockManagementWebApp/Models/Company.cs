@@ -15,5 +15,10 @@ namespace StockManagementWebApp.Models
         public int RegistrationCode { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public Category Category { get; set; }
+       
+        public int CategoryId { get; set; }
+
     }
 }

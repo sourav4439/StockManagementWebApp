@@ -177,8 +177,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +203,10 @@
     <Compile Include="Migrations\201810151438429_ItemSetup.cs" />
     <Compile Include="Migrations\201810151438429_ItemSetup.Designer.cs">
       <DependentUpon>201810151438429_ItemSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810191313466_categoryIdIncompany.cs" />
+    <Compile Include="Migrations\201810191313466_categoryIdIncompany.Designer.cs">
+      <DependentUpon>201810191313466_categoryIdIncompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,6 +272,13 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -310,9 +322,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Company\Create.cshtml" />
-    <Content Include="Views\Company\Index.cshtml" />
-    <Content Include="Views\Company\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810151438429_ItemSetup.resx">
       <DependentUpon>201810151438429_ItemSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191313466_categoryIdIncompany.resx">
+      <DependentUpon>201810191313466_categoryIdIncompany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
