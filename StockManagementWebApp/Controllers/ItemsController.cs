@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StockManagementWebApp.Models;
@@ -56,7 +57,6 @@ namespace StockManagementWebApp.Controllers
 
             return RedirectToAction("Index");
         }
-
         public JsonResult GetcompanyBycategoryId(int categoryId)
         {
             var companies = new List<Company>();
@@ -70,6 +70,33 @@ namespace StockManagementWebApp.Controllers
             }
             return Json(companies);
         }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Item item = db.Items.Find(id);
+            if (item==null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.category = db.Categories.Select(category => new SelectListItem()
+            {
+                Value = category.Id.ToString(),
+                Text = category.Name
+            }).ToList();
+            return View(item);
+        }
+        [HttpPost]
+        public ActionResult Edit(Item item)
+        {
+            return View();
+        }
+
+
 
     }
 }
