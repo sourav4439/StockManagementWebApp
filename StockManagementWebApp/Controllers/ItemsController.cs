@@ -60,15 +60,7 @@ namespace StockManagementWebApp.Controllers
         }
         public JsonResult GetcompanyBycategoryId(int categoryId)
         {
-            var companies = new List<Company>();
-            foreach (var c in db.Companies.Where(c=>c.CategoryId==categoryId).ToList())
-            {
-               Company company=new Company();
-                company.Id = c.Id;
-                company.Name = c.Name;
-
-                companies.Add(company);
-            }
+            var companies =db.Companies.Where(c => c.CategoryId == categoryId).ToList();
             return Json(companies);
         }
 

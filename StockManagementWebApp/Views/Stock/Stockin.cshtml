@@ -1,0 +1,103 @@
+﻿@model StockManagementWebApp.Models.StockIn
+
+@{
+    ViewBag.Title = "Stockin";
+}
+
+<h2>Stockin</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>StockIn</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model=>model.CompanyId, new SelectList(ViewBag.Company,"Value","Text")," Select Company", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ItemId, "ItemId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="ItemId" name="ItemId" class="form-control"><option></option></select>
+                @Html.ValidationMessageFor(model => model.ItemId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ReoderLavel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReoderLavel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReoderLavel, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.StockinQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StockinQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StockinQuantity, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    
+    <script>
+        $(document).ready(function () {
+
+            $("#CompanyId").change(function () {
+                $("#ItemId").empty();
+                var comId = $("#CompanyId").val();
+                var json = { companyId: comId };
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Stock/GetItemByCompanyId',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    dataType: "json",
+                    success: function (data) {
+                        $("#ItemId").append('<option>--Select a Item--</option>');
+                        $.each(data,
+                            function (key, value) {
+
+                                $("#ItemId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
+
+                            });
+                    }
+
+                });
+            });
+        });
+    </script>
+}
