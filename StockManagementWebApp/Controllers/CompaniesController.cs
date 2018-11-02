@@ -28,7 +28,7 @@ namespace StockManagementWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+           Company company = db.Companies.Include(c=>c.Category).SingleOrDefault(c=>c.Id==id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace StockManagementWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = db.Companies.Include(c => c.Category).SingleOrDefault(c => c.Id == id);
             if (company == null)
             {
                 return HttpNotFound();

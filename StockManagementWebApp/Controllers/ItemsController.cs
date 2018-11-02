@@ -30,7 +30,7 @@ namespace StockManagementWebApp.Controllers
 
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Category).ToList();
+            var items = db.Items.Include(i => i.Category).Include(i=>i.Company).ToList();
             return View(items);
         }
         [HttpGet]
