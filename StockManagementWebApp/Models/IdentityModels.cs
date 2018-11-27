@@ -24,6 +24,7 @@ namespace StockManagementWebApp.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<StockIn> StockIns { get; set; }
+        public DbSet<StockOut> StockOuts { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

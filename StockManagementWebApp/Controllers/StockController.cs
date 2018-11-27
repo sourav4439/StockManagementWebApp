@@ -78,5 +78,25 @@ namespace StockManagementWebApp.Controllers
 
             return Json(stockIn);
         }
+
+        [HttpGet]
+        public ActionResult StockOut()
+        {
+            ViewBag.Company = db.Companies.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult StockOut(StockOut stockOut)
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
     }
 }
