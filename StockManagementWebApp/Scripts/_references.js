@@ -12,5 +12,6 @@
 /// <reference path="popper.min.js" />
 /// <reference path="popper-utils.min.js" />
 /// <reference path="respond.min.js" />
+/// <reference path="table-to-json.min.js" />
 /// <reference path="umd/popper.min.js" />
 /// <reference path="umd/popper-utils.min.js" />
