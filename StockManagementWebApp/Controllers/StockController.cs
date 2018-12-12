@@ -86,8 +86,9 @@ namespace StockManagementWebApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult StockOut(StockOut stockOut)
+        public ActionResult StockOut(List<StockOut> stockOuts )
         {
+            ViewBag.Company = db.Companies.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList();
             return View();
         }
 

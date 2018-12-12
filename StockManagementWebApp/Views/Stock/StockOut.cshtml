@@ -33,13 +33,13 @@
         <div class="form-group">
             <label class="control-label col-md-2">ReorderLabel</label>
             <div class="col-md-10">
-                @Html.TextBox("ReorderLavel", "", new { @class = "form-control" })
+                @Html.TextBox("ReorderLavel", "", new { @class = "form-control", @readonly = "readonly" })
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Available Quantity</label>
             <div class="col-md-10">
-                @Html.TextBox("AvailableQuantity", "", new { @class = "form-control" })
+                @Html.TextBox("AvailableQuantity", "", new { @class = "form-control" , @readonly = "readonly" })
             </div>
         </div>
 
@@ -72,10 +72,13 @@
                 
             </tr>
             </thead>
+            <tbody id="createTable"></tbody>
            
         </table>
         <br>
-        <input type="button" id="sell" value="sell" />
+        <input type="button" id="sell" value="sell" onclick="sellButton()" />
+        <input type="button" id="lost" value="Lost" onclick="lostButton()" />
+        <input type="button" id="demage" value="Demage" onclick="demageButton()" />
 
         
        
@@ -88,7 +91,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/table-to-json.min.js"></script>
+   
     <script>
         $(document).ready(function() {
 
@@ -145,17 +148,95 @@
 
 
             });
-
+            //$('#sell').click(function () {
+            //    var table = $('#myTable').tableToJSON();
+            //    alert(JSON.stringify(table));
 
         });
+
+        function sellButton() {
+            //create a json array from html
+            var stockout = new Array();
+            $("#createTable tr").each(function () {
+                var stock = {};
+                stock.itemid = $(this).find("td #ItemId").eq(0).val();
+                stock.companyid = $(this).find("td #CompanyId").eq(0).val();
+                stock.TotalQuantity = $(this).find("td").eq(3).html();
+                stock.track = 1;
+
+                stockout.push(stock);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("StockOut","Stock")',
+                data: JSON.stringify(stockout),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                }
+            });
+        }
+        function lostButton() {
+            //create a json array from html
+            var stockout = new Array();
+            $("#createTable tr").each(function () {
+                var stock = {};
+                stock.itemid = $(this).find("td #ItemId").eq(0).val();
+                stock.companyid = $(this).find("td #CompanyId").eq(0).val();
+                stock.TotalQuantity = $(this).find("td").eq(3).html();
+                stock.track = 2;
+
+                stockout.push(stock);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("StockOut","Stock")',
+                data: JSON.stringify(stockout),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                }
+            });
+        }
+        function demageButton() {
+            //create a json array from html
+            var stockout = new Array();
+            $("#createTable tr").each(function () {
+                var stock = {};
+                stock.itemid = $(this).find("td #ItemId").eq(0).val();
+                stock.companyid = $(this).find("td #CompanyId").eq(0).val();
+                stock.TotalQuantity = $(this).find("td").eq(3).html();
+                stock.track = 3;
+
+                stockout.push(stock);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("StockOut","Stock")',
+                data: JSON.stringify(stockout),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                }
+            });
+        }
 
         function myCreateFunction() {
             var company = document.createTextNode($("#CompanyId option:selected").text());
             var item = document.createTextNode($("#ItemId option:selected").text());
             var stockout = $("#TotalQuantity").val();
 
-            var x = document.getElementById('myTable').rows.length;
-            var table = document.getElementById("myTable");
+            var x = document.getElementById('createTable').rows.length;
+            var table = document.getElementById("createTable");
 
            
 
@@ -167,11 +248,7 @@
             var cell5 = row.insertCell(4);
 
 
-           
-            var sl = x - 1;
-
-
-            cell1.innerHTML = sl + 1;
+            cell1.innerHTML = x+1;
 
 
             cell2.appendChild(item);
@@ -222,10 +299,8 @@
                 
           
         }
-        $('#sell').click(function () {
-            var table = $('#myTable').tableToJSON();
-            alert(JSON.stringify(table));
-        });
+
+        
 
         
 
