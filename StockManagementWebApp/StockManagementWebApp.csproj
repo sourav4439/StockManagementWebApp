@@ -181,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +217,18 @@
     <Compile Include="Migrations\201811271333516_StockOut.cs" />
     <Compile Include="Migrations\201811271333516_StockOut.Designer.cs">
       <DependentUpon>201811271333516_StockOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812121640531_trackmodel.cs" />
+    <Compile Include="Migrations\201812121640531_trackmodel.Designer.cs">
+      <DependentUpon>201812121640531_trackmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812121647156_track.cs" />
+    <Compile Include="Migrations\201812121647156_track.Designer.cs">
+      <DependentUpon>201812121647156_track.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812130802192_stockOutdate.cs" />
+    <Compile Include="Migrations\201812130802192_stockOutdate.Designer.cs">
+      <DependentUpon>201812130802192_stockOutdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,6 +355,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -374,6 +388,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811271333516_StockOut.resx">
       <DependentUpon>201811271333516_StockOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121640531_trackmodel.resx">
+      <DependentUpon>201812121640531_trackmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121647156_track.resx">
+      <DependentUpon>201812121647156_track.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812130802192_stockOutdate.resx">
+      <DependentUpon>201812130802192_stockOutdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

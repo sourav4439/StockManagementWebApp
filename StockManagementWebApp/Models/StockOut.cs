@@ -16,7 +16,16 @@ namespace StockManagementWebApp.Models
         [Display(Name = " Stock Out Quantity")]
         public int TotalQuantity { get; set; }
 
-        public int Track { get; set; }
+        public DateTime Date { get; set; }
 
+        public Track Track { get; set; }
+        public byte TrackId { get; set; }
+
+    }
+
+    public class Track
+    {
+        public byte Id { get; set; }
+        public string Trackname { get; set; }
     }
 }

@@ -39,14 +39,14 @@
         <div class="form-group">
             <label class="control-label col-md-2">Available Quantity</label>
             <div class="col-md-10">
-                @Html.TextBox("AvailableQuantity", "", new { @class = "form-control" , @readonly = "readonly" })
+                @Html.TextBox("AvailableQuantity", "", new { @class = "form-control", @readonly = "readonly" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.TotalQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.TotalQuantity, htmlAttributes : new { @class = "form-control" } )
+                @Html.TextBoxFor(model => model.TotalQuantity, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TotalQuantity, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,32 +56,32 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" onclick="myCreateFunction()" value="Add" />
-                
-                
+
+
             </div>
         </div>
         <table id="myTable" class="table table-bordered">
             <thead>
-            <tr>
-                <th class="col">SL</th>
-                <th class="col">Item</th>
-                <th class="col">Company</th>
-                <th class="col">Quantity</th>
-                <th class="col">Action</th>
-                
-                
-            </tr>
+                <tr>
+                    <th class="col">SL</th>
+                    <th class="col">Item</th>
+                    <th class="col">Company</th>
+                    <th class="col">Quantity</th>
+                    <th class="col">Action</th>
+
+
+                </tr>
             </thead>
             <tbody id="createTable"></tbody>
-           
+
         </table>
         <br>
         <input type="button" id="sell" value="sell" onclick="sellButton()" />
         <input type="button" id="lost" value="Lost" onclick="lostButton()" />
         <input type="button" id="demage" value="Demage" onclick="demageButton()" />
 
-        
-       
+
+
     </div>
 }
 
@@ -91,11 +91,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-   
-    <script>
-        $(document).ready(function() {
 
-            $("#CompanyId").change(function() {
+    <script>
+        $(document).ready(function () {
+
+            $("#CompanyId").change(function () {
                 $("#ItemId").empty();
                 var comId = $("#CompanyId").val();
                 var json = { companyId: comId };
@@ -106,10 +106,10 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
                     dataType: "json",
-                    success: function(data) {
-                        $("#ItemId").append('<option>--Select a Item--</option>');
+                    success: function (data) {
+                        $("#ItemId").append('<option value="">--Select a Item--</option>');
                         $.each(data,
-                            function(key, value) {
+                            function (key, value) {
 
                                 $("#ItemId").append('<option value=' + value.Value + '>' + value.Text + '</option>');
 
@@ -118,7 +118,7 @@
 
                 });
             });
-            $("#ItemId").change(function() {
+            $("#ItemId").change(function () {
                 $("#ReorderLavel").val("");
                 $("#AvailableQuantity").val("");
                 var itemId = $("#ItemId").val();
@@ -131,7 +131,7 @@
                     data: JSON.stringify(jsonData),
                     dataType: "json",
 
-                    success: function(data) {
+                    success: function (data) {
 
                         $("#ReorderLavel").val(data.Item.ReorderLavel);
                         $("#AvailableQuantity").val(data.TotalQuantity);
@@ -151,34 +151,39 @@
             //$('#sell').click(function () {
             //    var table = $('#myTable').tableToJSON();
             //    alert(JSON.stringify(table));
-
+            
         });
 
-        function sellButton() {
-            //create a json array from html
-            var stockout = new Array();
-            $("#createTable tr").each(function () {
-                var stock = {};
-                stock.itemid = $(this).find("td #ItemId").eq(0).val();
-                stock.companyid = $(this).find("td #CompanyId").eq(0).val();
-                stock.TotalQuantity = $(this).find("td").eq(3).html();
-                stock.track = 1;
 
-                stockout.push(stock);
-            });
 
-            //Send the JSON array to Controller using AJAX.
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("StockOut","Stock")',
-                data: JSON.stringify(stockout),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (r) {
-                    alert(r + " record(s) inserted.");
-                }
-            });
-        }
+
+            function sellButton() {
+                //create a json array from html
+                var stockout = new Array();
+                $("#createTable tr").each(function () {
+                    var stock = {};
+                    stock.itemid = $(this).find("td #ItemId").eq(0).val();
+                    stock.companyid = $(this).find("td #CompanyId").eq(0).val();
+                    stock.TotalQuantity = $(this).find("td").eq(3).html();
+                    stock.trackid = 1;
+                    stock.date = '@DateTime.Now.Date';
+                    stockout.push(stock);
+                });
+
+                //Send the JSON array to Controller using AJAX.
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("StockOut","Stock")',
+                    data: JSON.stringify(stockout),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        alert(r);
+                        location.reload();
+                    
+                    }
+                });
+            }
         function lostButton() {
             //create a json array from html
             var stockout = new Array();
@@ -187,7 +192,8 @@
                 stock.itemid = $(this).find("td #ItemId").eq(0).val();
                 stock.companyid = $(this).find("td #CompanyId").eq(0).val();
                 stock.TotalQuantity = $(this).find("td").eq(3).html();
-                stock.track = 2;
+                stock.trackid = 3;
+                stock.date = '@DateTime.Now.Date';
 
                 stockout.push(stock);
             });
@@ -200,7 +206,8 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                    alert(r + " record(s) inserted.");
+                    alert(r);
+                    location.reload();
                 }
             });
         }
@@ -212,8 +219,8 @@
                 stock.itemid = $(this).find("td #ItemId").eq(0).val();
                 stock.companyid = $(this).find("td #CompanyId").eq(0).val();
                 stock.TotalQuantity = $(this).find("td").eq(3).html();
-                stock.track = 3;
-
+                stock.trackid = 2;
+                stock.date = '@DateTime.Now.Date';
                 stockout.push(stock);
             });
 
@@ -225,20 +232,66 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                    alert(r + " record(s) inserted.");
+                    alert(r);
+                    location.reload();
                 }
             });
         }
-
+        //Create Dom Table By Javascript
         function myCreateFunction() {
+           
             var company = document.createTextNode($("#CompanyId option:selected").text());
             var item = document.createTextNode($("#ItemId option:selected").text());
-            var stockout = $("#TotalQuantity").val();
+            var companyiid = $("#CompanyId").val();
+            var itemiid=$("#ItemId").val();
+            var stockout = parseInt($("#TotalQuantity").val());
+            var avail = parseInt($("#AvailableQuantity").val());
+
+           
+
+            
+
+            if (companyiid < 1) {
+                alert('Please select a Company');
+                $('#CompanyId').focus();
+                return false;
+
+            }
+            if (itemiid < 1) {
+                alert('Please select a Item');
+                $('#ItemId').focus();
+                return false;
+
+            }
+            if (stockout == "") {
+                alert('Please fillup This');
+                $('#TotalQuantity').focus();
+                return false;
+
+            }
+            var reg0Str = '^[0-9]*\\.?[0-9]{0,2}$';
+            var reg0 = new RegExp(reg0Str);
+            if (!reg0.test(stockout)) {
+                alert('Please Enter A Valid Number');
+                $('#TotalQuantity').focus();
+                return false;
+
+            }
+           
+            var r = avail < stockout;
+
+            if (r) {
+                alert('Item Stock not Available');
+                $('#TotalQuantity').focus();
+                return false;
+            }
+            
+
 
             var x = document.getElementById('createTable').rows.length;
             var table = document.getElementById("createTable");
+            
 
-           
 
             var row = table.insertRow(-1);
             var cell1 = row.insertCell(0);
@@ -248,10 +301,11 @@
             var cell5 = row.insertCell(4);
 
 
-            cell1.innerHTML = x+1;
+            cell1.innerHTML = x + 1;
 
 
             cell2.appendChild(item);
+
             var itemid = document.createElement('input');
             itemid.type = 'hidden';
             itemid.value = $("#ItemId").val();;
@@ -261,13 +315,13 @@
             cell3.appendChild(company);
             var companyid = document.createElement('input');
             companyid.type = 'hidden';
-            companyid.value = $("#CompanyId").val();;
+            companyid.value = companyiid;
             companyid.id = 'CompanyId';
             cell3.appendChild(companyid);
 
             //var itemtext = $("td").eq(1).text();
-            
-            
+
+
             //if (x>=2) {
             //    if (itemtext === item.data) {
             //        var r = $("tr").find("td").eq(3).text();
@@ -277,8 +331,8 @@
             //} else {
             //    cell4.innerHTML = stockout;
             //}
-           
-            
+
+
             cell4.innerHTML = stockout;
 
 
@@ -287,8 +341,10 @@
             removeBtn.value = "Remove";
             removeBtn.setAttribute("onclick", "myDeleteFunction(this)");
             cell5.appendChild(removeBtn);
+            $("#AvailableQuantity").val(avail - stockout); 
+            return true;
         }
-
+        //For Remove Specific table Row
         function myDeleteFunction(button) {
             var i = button.parentNode.parentNode.rowIndex;
             var item = button.parentNode.parentNode.childNodes;
@@ -296,13 +352,13 @@
                 document.getElementById("myTable").deleteRow(i);
 
             }
-                
-          
+
+
         }
 
-        
 
-        
+
+
 
 
     </script>

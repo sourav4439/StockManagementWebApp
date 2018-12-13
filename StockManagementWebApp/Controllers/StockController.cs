@@ -19,6 +19,14 @@ namespace StockManagementWebApp.Controllers
             db = new ApplicationDbContext();
 
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
         public ActionResult Index()
         {
            
@@ -89,7 +97,32 @@ namespace StockManagementWebApp.Controllers
         public ActionResult StockOut(List<StockOut> stockOuts )
         {
             ViewBag.Company = db.Companies.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }).ToList();
-            return View();
+
+            foreach (var stockOut in stockOuts)
+            {
+                var stockIndb = db.StockIns.SingleOrDefault(s => s.ItemId == stockOut.ItemId);
+                if (stockIndb != null) stockIndb.TotalQuantity = stockIndb.TotalQuantity - stockOut.TotalQuantity;
+
+
+                db.StockOuts.Add(stockOut);
+                
+            }
+           var result= db.SaveChanges();
+
+            if (result>0)
+            {
+                var msg = "Record Save SuccessFull";
+                return Json(msg);
+            }
+            else
+            {
+                var msg = "Record Save SuccessFull";
+                return Json(msg);
+            }
+            
+
+
+
         }
 
 
