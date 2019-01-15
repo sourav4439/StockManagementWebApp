@@ -58,6 +58,7 @@ namespace StockManagementWebApp.Controllers
 
             return RedirectToAction("Index");
         }
+        
         public JsonResult GetcompanyBycategoryId(int categoryId)
         {
             var companies =db.Companies.Where(c => c.CategoryId == categoryId).ToList();
